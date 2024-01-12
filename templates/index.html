@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NER with spaCy</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">spaCy</span> NER Analyzer Tool</h1>
+            </div>
+        </div>
+
+    </header>
+    <div class="middlemarch-message">
+        <p>Made with <span class="heart">♡</span> by Middlemarch Team</p>
+    </div>
+
+
+    <p style="font-size: small; text-align: center; color: rgb(128,128,128);">
+    Please note: This tool's outputs are based on algorithmic predictions and may not always be accurate or reliable.
+</p>
+
+
+    <div class="container">
+        <form method="post">
+            <textarea name="text" placeholder="Enter text here..."></textarea>
+            <div class="char-count-display"></div>
+
+            <input type="submit" value="Analyze">
+        </form>
+
+        {% if entities %}
+            <h2>Entities Found:</h2>
+            <table>
+                <tr>
+                    <th>Entity</th>
+                    <th>Type</th>
+                </tr>
+                {% for entity, type in entities %}
+                    <tr>
+                        <td>{{ entity }}</td>
+                        <td>{{ type }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+    <div class="container">
+        <h2>Entity Types Recognized by spaCy:</h2>
+        <ul>
+            <li><strong>PERSON</strong>: People, including fictional.</li>
+            <li><strong>NORP</strong>: Nationalities or religious or political groups.</li>
+            <li><strong>FAC</strong>: Buildings, airports, highways, bridges, etc.</li>
+            <li><strong>ORG</strong>: Companies, agencies, institutions, etc.</li>
+            <li><strong>GPE</strong>: Countries, cities, states.</li>
+            <li><strong>LOC</strong>: Non-GPE locations, mountain ranges, bodies of water.</li>
+            <li><strong>PRODUCT</strong>: Objects, vehicles, foods, etc. (Not services.)</li>
+            <li><strong>EVENT</strong>: Named hurricanes, battles, wars, sports events, etc.</li>
+            <li><strong>WORK_OF_ART</strong>: Titles of books, songs, etc.</li>
+            <li><strong>LAW</strong>: Named documents made into laws.</li>
+            <li><strong>LANGUAGE</strong>: Any named language.</li>
+            <li><strong>DATE</strong>: Absolute or relative dates or periods.</li>
+            <li><strong>TIME</strong>: Times smaller than a day.</li>
+            <li><strong>PERCENT</strong>: Percentage, including "%".</li>
+            <li><strong>MONEY</strong>: Monetary values, including unit.</li>
+            <li><strong>QUANTITY</strong>: Measurements, as of weight or distance.</li>
+            <li><strong>ORDINAL</strong>: "first", "second", etc.</li>
+            <li><strong>CARDINAL</strong>: Numerals that do not fall under another type.</li>
+        </ul>
+    </div>
+</body>
+</body>
+</html>
